@@ -42,7 +42,7 @@ public class AppConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
                 cfg.setAllowedOrigins(Arrays.asList(
                         "http://localhost:3000",
-                        "https://project-tracker-frontend-three.vercel.app/",
+                        "https://project-tracker-frontend-three.vercel.app",
                         "http://localhost:5173",
                         "http://localhost:4200"));
                 cfg.setAllowedMethods(Collections.singletonList("*"));
