@@ -12,8 +12,8 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Important: Add SockJS fallback support for client compatibility
         registry.addEndpoint("/ws")
-        .setAllowedOriginPatterns("http://localhost:5713")
-        .withSockJS();
+                .setAllowedOriginPatterns("http://localhost:5713", "https://project-tracker-frontend-three.vercel.app/")
+                .withSockJS();
     }
 
     @Override

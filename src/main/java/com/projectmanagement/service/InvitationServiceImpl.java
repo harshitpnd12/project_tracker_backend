@@ -29,7 +29,8 @@ public class InvitationServiceImpl implements InvitationService {
 
         invitationRepository.save(invitation);
 
-        String invitationLink = "http://localhost:5173/accept_invitation?token=" + invitationToken;
+        String invitationLink = "https://project-tracker-frontend-three.vercel.app/accept_invitation?token="
+                + invitationToken;
         emailService.sendEmailWithToken(email, invitationLink);
     }
 
@@ -56,4 +57,3 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
 }
-
