@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/comments")
 public class CommentController {
 
@@ -25,7 +26,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<Comment> createComment(@RequestBody CreateCommentRequest req,
-                                                 @RequestHeader("Authorization") String jwt) throws Exception {
+            @RequestHeader("Authorization") String jwt) throws Exception {
         User user = userService.findUserProfileByJwt(jwt);
         Comment createdComment = commentService.createComment(
                 req.getIssueId(),
@@ -36,7 +37,7 @@ public class CommentController {
 
     @DeleteMapping("{commentId}")
     public ResponseEntity<MessageResponse> deleteComment(@PathVariable Long commentId,
-                                                         @RequestHeader("Authorization") String jwt) throws Exception {
+            @RequestHeader("Authorization") String jwt) throws Exception {
 
         User user = userService.findUserProfileByJwt(jwt);
         commentService.deleteComment(commentId, user.getId());
@@ -53,4 +54,3 @@ public class CommentController {
     }
 
 }
-

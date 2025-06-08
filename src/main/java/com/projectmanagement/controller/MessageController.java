@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/messages")
 public class MessageController {
 

@@ -1,6 +1,5 @@
 package com.projectmanagement.controller;
 
-
 import com.projectmanagement.model.PlanType;
 import com.projectmanagement.model.Subscription;
 import com.projectmanagement.model.User;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/subscription")
 public class SubscriptionController {
 
@@ -22,7 +22,8 @@ public class SubscriptionController {
     private UserService userService;
 
     @GetMapping("/user")
-    public ResponseEntity<Subscription> getUserSubscription(@RequestHeader("Authorization") String jwt) throws Exception {
+    public ResponseEntity<Subscription> getUserSubscription(@RequestHeader("Authorization") String jwt)
+            throws Exception {
 
         User user = userService.findUserProfileByJwt(jwt);
 
@@ -33,7 +34,7 @@ public class SubscriptionController {
 
     @PatchMapping("/upgrade")
     public ResponseEntity<Subscription> UpgradeSubscription(@RequestHeader("Authorization") String jwt,
-                                                            @RequestParam PlanType planType) throws Exception {
+            @RequestParam PlanType planType) throws Exception {
 
         User user = userService.findUserProfileByJwt(jwt);
 

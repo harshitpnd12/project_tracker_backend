@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/projects")
 public class ProjectController {
 
@@ -124,4 +125,3 @@ public class ProjectController {
         return new ResponseEntity<>(invitation, HttpStatus.ACCEPTED);
     }
 }
-

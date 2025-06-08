@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/issues")
 public class IssueController {
 
@@ -35,7 +36,7 @@ public class IssueController {
 
     @PostMapping
     public ResponseEntity<IssueDTO> createIssue(@RequestBody IssueRequest issue,
-                                                @RequestHeader("Authorization") String token) throws Exception {
+            @RequestHeader("Authorization") String token) throws Exception {
         User tokenUser = userService.findUserProfileByJwt(token);
         User user = userService.findUserById(tokenUser.getId());
 
@@ -55,13 +56,12 @@ public class IssueController {
         issueDTO.setAssignee(createdIssue.getAssignee());
         issueDTO.setReporter(createdIssue.getReporter());
 
-
         return ResponseEntity.ok(issueDTO);
     }
 
     @DeleteMapping("/{issueId}")
     public ResponseEntity<MessageResponse> deleteIssue(@PathVariable Long issueId,
-                                                       @RequestHeader("Authorization") String token) throws Exception {
+            @RequestHeader("Authorization") String token) throws Exception {
 
         User user = userService.findUserProfileByJwt(token);
         issueService.deleteIssue(issueId, user.getId());
@@ -73,14 +73,15 @@ public class IssueController {
     }
 
     @PutMapping("/{issueId}/assignee/{userId}")
-    public ResponseEntity<Issue> addUserToIssue(@PathVariable Long issueId, @PathVariable Long userId) throws Exception {
+    public ResponseEntity<Issue> addUserToIssue(@PathVariable Long issueId, @PathVariable Long userId)
+            throws Exception {
         Issue issue = issueService.addUserToIssue(issueId, userId);
         return ResponseEntity.ok(issue);
     }
 
     @PutMapping("/{issueId}/status/{status}")
     public ResponseEntity<Issue> updateIssueStatus(@PathVariable String status,
-                                                   @PathVariable Long issueId) throws Exception {
+            @PathVariable Long issueId) throws Exception {
         Issue issue = issueService.updateStatus(issueId, status);
         return ResponseEntity.ok(issue);
     }

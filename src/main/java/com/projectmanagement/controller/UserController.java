@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-// @CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
-
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "https://project-tracker-frontend-three.vercel.app", allowCredentials = "true")
 @RequestMapping("/api/users")
 public class UserController {
 
