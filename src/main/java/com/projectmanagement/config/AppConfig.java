@@ -39,19 +39,15 @@ public class AppConfig {
     }
 
     private CorsConfigurationSource corsConfigurationSource() {
-        return new CorsConfigurationSource() {
-            @Override
-            public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                CorsConfiguration cfg = new CorsConfiguration();
-                // Use allowed origin patterns (supports wildcard matching)
-                cfg.setAllowedOriginPatterns(Arrays.asList("https://project-tracker-frontend-three.vercel.app"));
-                cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                cfg.setAllowCredentials(true);
-                cfg.setAllowedHeaders(Collections.singletonList("*"));
-                cfg.setExposedHeaders(Arrays.asList("Authorization"));
-                cfg.setMaxAge(3600L);
-                return cfg;
-            }
+        return request -> {
+            CorsConfiguration cfg = new CorsConfiguration();
+            cfg.setAllowedOrigins(Collections.singletonList("https://project-tracker-frontend-three.vercel.app"));
+            cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+            cfg.setAllowCredentials(true);
+            cfg.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type", "Accept", "Origin"));
+            cfg.setExposedHeaders(Arrays.asList("Authorization"));
+            cfg.setMaxAge(3600L);
+            return cfg;
         };
     }
 
