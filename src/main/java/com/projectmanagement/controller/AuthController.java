@@ -75,6 +75,7 @@ public class AuthController {
         String userName = loginRequest.getEmail();
         String password = loginRequest.getPassword();
 
+        System.out.print("hello");
         Authentication authentication = authenticate(userName, password);
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -100,4 +101,3 @@ public class AuthController {
         return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
     }
 }
-

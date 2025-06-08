@@ -14,6 +14,7 @@ public class WebsocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/ws")
                 .setAllowedOriginPatterns("https://project-tracker-frontend-three.vercel.app")
                 .withSockJS();
+
     }
 
     @Override
