@@ -28,8 +28,8 @@ public class AppConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow CORS preflight
-                        .requestMatchers("/api/**").authenticated() // Protect API
-                        .anyRequest().permitAll() // Allow everything else
+                        .requestMatchers("/api/**").authenticated() // Protect API endpoints
+                        .anyRequest().permitAll() // Allow other requests
                 )
                 .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable())
@@ -43,13 +43,9 @@ public class AppConfig {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg = new CorsConfiguration();
-
-                // ✅ Correct CORS for credentials
-                cfg.setAllowedOrigins(Arrays.asList(
-                        "https://project-tracker-frontend-three.vercel.app"
-                // Add more allowed domains here if needed
-                ));
-
+                // Use allowed origin patterns for better matching
+                cfg.setAllowedOriginPatterns(Arrays.asList(
+                        "https://project-tracker-frontend-three.vercel.app"));
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));
