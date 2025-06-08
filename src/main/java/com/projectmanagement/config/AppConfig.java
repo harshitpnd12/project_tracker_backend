@@ -128,6 +128,10 @@ public class AppConfig {
                         "http://localhost:5173",
                         "http://localhost:4200"));
 
+                cfg.setAllowedOrigins(Arrays.asList(
+                        "http://localhost:3000",
+                        "https://project-tracker-frontend-three.vercel.app"));
+
                 // Allowed HTTP methods explicitly listed
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
