@@ -122,7 +122,7 @@ public class AppConfig {
                 CorsConfiguration cfg = new CorsConfiguration();
 
                 // Allowed origins (no trailing slash)
-                cfg.setAllowedOrigins(Arrays.asList(
+                cfg.setAllowedOriginPatterns(Arrays.asList(
                         "http://localhost:3000",
                         "https://project-tracker-frontend-three.vercel.app",
                         "http://localhost:5173",
