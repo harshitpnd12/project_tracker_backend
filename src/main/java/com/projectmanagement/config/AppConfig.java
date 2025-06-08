@@ -43,11 +43,13 @@ public class AppConfig {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg = new CorsConfiguration();
-                cfg.setAllowedOrigins(Arrays.asList(
-                        "http://localhost:3000",
-                        "http://localhost:5173",
-                        "http://localhost:4200",
-                        "https://project-tracker-frontend-three.vercel.app"));
+                // cfg.setAllowedOrigins(Arrays.asList(
+                // "http://localhost:3000",
+                // "http://localhost:5173",
+                // "http://localhost:4200",
+                // "https://project-tracker-frontend-three.vercel.app"));
+                cfg.setAllowedOriginPatterns(Arrays.asList("*")); // allow all origins, for testing only
+
                 cfg.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));
